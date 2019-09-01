@@ -4,7 +4,7 @@
 
 <div align="center">
   <br>
-  <img src="icons/screely.png" alt="books" width="100%">
+  <img src="icons/screely.png" alt="binder" width="100%">
   <br>
 </div>
 

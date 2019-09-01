@@ -13,7 +13,7 @@
 
     const drawListBook = async () => {
         if (searchBinder.value !== "") {
-            const da5ta = await getBinder(searchBinder.value);
+            const data = await getBinder(searchBinder.value);
 
             bookContainer.innerHTML = data.items
                 .map(({
