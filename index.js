@@ -9,14 +9,14 @@ const getBinder = async book => {
 }
 const drawListBook = async () => {
     if (searchBinder.value !== '') {
-        bookContainer.innerHTML = `<div class='prompt'>Searching...</div>`
+        bookContainer.innerHTML = `<div class='prompt'><div class="loader"></div><div>Searching...</div></div>`
         const data = await getBinder(searchBinder.value)
         if (data.error) {
-            bookContainer.innerHTML = `<div class='prompt'>Limit exceeded! Try after some time</div>`
+            bookContainer.innerHTML = `<div class='prompt'><div class='prompt'>😕</div>Limit exceeded! Try after some time</div>`
         } else if (data.totalItems == 0) {
-            bookContainer.innerHTML = `<div class='prompt'>No results, try a different term!</div>`
+            bookContainer.innerHTML = `<div class='prompt'><div class='prompt'>😕</div>No results, try a different term!</div>`
         } else if (data.totalItems == undefined) {
-            bookContainer.innerHTML = `<div class='prompt'>Network problem!</div>`
+            bookContainer.innerHTML = `<div class='prompt'><div class='prompt'>😕</div>Network problem!</div>`
         } else {
             bookContainer.innerHTML = data.items
                 .map(({
