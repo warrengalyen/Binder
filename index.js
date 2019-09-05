@@ -65,7 +65,7 @@ const updateFilter = ({
 const debounce = (fn, time, to = 0) => {
     to ? clearTimeout(to) : (to = setTimeout(drawListBook, time))
 }
-earchBinder.addEventListener('input', () => {
+searchBinder.addEventListener('input', () => {
     debounce(drawListBook, 1000)
 })
 document.addEventListener('DOMContentLoaded', () => {
