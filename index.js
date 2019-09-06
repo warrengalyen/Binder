@@ -1,5 +1,5 @@
 let bookContainer = document.querySelector('.search-book')
-let searchBinder = document.getElementById('search')
+let searchBinder = document.getElementById('search-box')
 const getBinder = async book => {
     const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${book}`)
     const data = await response.json()
@@ -19,12 +19,12 @@ const drawChartBook = async (subject) => {
         cbookContainer.innerHTML = cdata.items
             .map(({
                       volumeInfo
-                  }) => `<div class='book'><a href='${volumeInfo.infoLink}' target='_blank'><img class='thumbnail' src='${volumeInfo.imageLinks.thumbnail}' onerror='this.src="icons/logo.svg";'></a><div class='book-info'><a href='${volumeInfo.infoLink}' target='_blank'><h3 class='book-title'>${volumeInfo.title}</h3></a><div class='book-authors' onclick='updateFilter(this,"author");'>${volumeInfo.authors}</div><div class='info' onclick='updateFilter(this,"subject");'>${volumeInfo.categories}</div></div></div>`)
+                  }) => `<div class='book'><a class='link' href='${volumeInfo.infoLink}' target='_blank'><img class='thumbnail' src='${volumeInfo.imageLinks.thumbnail}' onerror='this.src="icons/logo.svg";'></a><div class='book-info'><a class='link' href='${volumeInfo.infoLink}' target='_blank'><h3 class='book-title'>${volumeInfo.title}</h3></a><div class='book-authors' onclick='updateFilter(this,"author");'>${volumeInfo.authors}</div><div class='info' onclick='updateFilter(this,"subject");'>${volumeInfo.categories}</div></div></div>`)
             .join('')
     }
 }
 const drawListBook = async () => {
-    if (searchBinder.value !== '') {
+    if (searchBinder.value != '') {
         bookContainer.innerHTML = `<div class='prompt'><div class="loader"></div><div>Searching...</div></div>`
         const data = await getBinder(searchBinder.value)
         if (data.error) {
@@ -37,7 +37,7 @@ const drawListBook = async () => {
             bookContainer.innerHTML = data.items
                 .map(({
                           volumeInfo
-                      }) => `<div class='book'><a href='${volumeInfo.infoLink}' target='_blank'><img class='thumbnail' src='${volumeInfo.imageLinks.thumbnail}' onerror='this.src="icons/logo.svg";'></a><div class='book-info'><a href='${volumeInfo.infoLink}' target='_blank'><h3 class='book-title'>${volumeInfo.title}</h3></a><div class='book-authors' onclick='updateFilter(this,"author");'>${volumeInfo.authors}</div><div class='info' onclick='updateFilter(this,"subject");'>${volumeInfo.categories}</div></div></div>`)
+                      }) => `<div class='book'><a class='link' href='${volumeInfo.infoLink}' target='_blank'><img class='thumbnail' src='${volumeInfo.imageLinks.thumbnail}' onerror='this.src="icons/logo.svg";'></a><div class='book-info'><a class='link' href='${volumeInfo.infoLink}' target='_blank'><h3 class='book-title'>${volumeInfo.title}</h3></a><div class='book-authors' onclick='updateFilter(this,"author");'>${volumeInfo.authors}</div><div class='info' onclick='updateFilter(this,"subject");'>${volumeInfo.categories}</div></div></div>`)
                 .join('')
         }
     } else {
@@ -72,10 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
     drawChartBook('fiction')
     drawChartBook('poetry')
     drawChartBook('fantasy')
-    drawChartBook('horror')
+    drawChartBook('science')
 })
-const scrollInto = (target) => {
-    document.getElementById(`${target}-book`).scrollIntoView({
-        behavior: 'smooth'
+let mainNavLinks = document.querySelectorAll('.nav')
+window.addEventListener('scroll', event => {
+    let fromTop = window.scrollY + 128
+    mainNavLinks.forEach(({
+                              hash,
+                              classList
+                          }) => {
+        let section = document.querySelector(hash)
+        if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+            classList.add('current')
+        } else {
+            classList.remove('current')
+        }
     })
-}
+})
