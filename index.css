@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #212126;
-    --secondary-color: #ababb5;
+    --primary-color: rgba(0, 0, 0, .9);
+    --secondary-color: rgba(0, 0, 0, .6);
 }
 
 * {
@@ -64,8 +64,8 @@ a {
     text-decoration: none;
 }
 
-a.link:hover,
-.book-authors:hover {
+.book-authors:hover,
+.info:hover {
     color: #000;
     transition: all .2s;
 }
@@ -151,12 +151,12 @@ article {
     display: flex;
     align-items: center;
     flex-direction: column;
-    flex-grow: 1;
 }
 
 .list-book {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .loader {
@@ -238,6 +238,7 @@ article {
     font-weight: 600;
     cursor: pointer;
     transition: all .2s;
+    color: var(--secondary-color);
 }
 
 .flex {
