@@ -32,13 +32,6 @@
     <meta name="msapplication-TileImage" content="icons/icon-144x144.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-tap-highlight" content="no">
-    <!-- OpenGraph -->
-    <meta property="og:site_name" content="Binder">
-    <meta property="og:url" content="https://warrengalyen.github.io/binder">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Binder">
-    <meta property="og:description" content="Find books from Google Play Binder">
-    <meta property="og:image" content="icons/icon-144x144.png">
     <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
@@ -52,6 +45,7 @@
                 });
             });
         }
+
     </script>
 </head>
 
@@ -65,16 +59,13 @@
     <nav>
         <ul>
             <li class="subhead">DISCOVER</li>
-            <li><a class="nav current" href="#search"><span class="icon">❤</span>Search</a></li>
-            <li><a class="nav" href="#foryou"><span class="icon">❤</span>For you</a></li>
-            <li><a class="nav" href="#mystery"><span class="icon">❤</span>Daily Top 100</a></li>
-            <li><a class="nav" href="#thriller"><span class="icon">❤</span>New releases</a></li>
-            <li><a class="nav" href="#historical"><span class="icon">❤</span>Bestsellers</a></li>
+            <li><a class="nav current" href="#search"><span class="icon">🔍</span>Search</a></li>
+            <li><a class="nav" href="#foryou"><span class="icon">💖</span>For you</a></li>
             <li class="subhead">LIBRARY</li>
-            <li><a class="nav" href="#fiction"><span class="icon">⬤</span>Fiction</a></li>
-            <li><a class="nav" href="#poetry"><span class="icon">⬤</span>Poetry</a></li>
-            <li><a class="nav" href="#fantasy"><span class="icon">⬤</span>Fantasy</a></li>
-            <li><a class="nav" href="#science"><span class="icon">⬤</span>Science</a></li>
+            <li><a class="nav" href="#fiction"><span class="icon">👽</span>Fiction</a></li>
+            <li><a class="nav" href="#poetry"><span class="icon">🌈</span>Poetry</a></li>
+            <li><a class="nav" href="#fantasy"><span class="icon">🌺</span>Fantasy</a></li>
+            <li><a class="nav" href="#science"><span class="icon">🔬</span>Science</a></li>
         </ul>
     </nav>
     <div class="spacer"></div>
@@ -87,77 +78,81 @@
     <article>
         <section id="search" class="results">
             <div class="flex">
-                <input id="search-box" class="search-box" placeholder="Search books by name, author, genre etc..." aria-label="Search books">
+                <input id="search-box" class="search-box" placeholder="Search books by name, author, genre and etc ..." aria-label="Search books">
             </div>
             <div class="list-book search">
                 <div class="prompt">Enter a search term</div>
             </div>
         </section>
-        <section id="foryou" class="results">
-            <div class="flex">
-                <h1 class="section-title">For you</h1>
-            </div>
-            <div class="list-book foryou">
-                <div class="book category">
-                    <div class="book-info">
-                        <h1 class="section-title">Daily Top 100</h1>
+        <div id="foryou">
+            <section class="results">
+                <div class="list-book foryou">
+                    <a href="#mystery">
+                        <div class="book category">
+                            <div class="book-info">
+                                <h1 class="section-title">Daily Top 100</h1>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#thriller">
+                        <div class="book category">
+                            <div class="book-info">
+                                <h1 class="section-title">New releases</h1>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#historical">
+                        <div class="book category">
+                            <div class="book-info">
+                                <h1 class="section-title">Bestsellers</h1>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section id="mystery" class="results">
+                <div class="flex">
+                    <h1 class="section-title">Daily Top 100</h1>
+                    <div>
+                        <button id="mystery-prev" class="pagination prev" onclick="prev('mystery')">⮜</button>
+                        <button id="mystery-next" class="pagination next" onclick="next('mystery')">⮞</button>
                     </div>
                 </div>
-                <div class="book category">
-                    <div class="book-info">
-                        <h1 class="section-title">New releases</h1>
+                <div class="list-book mystery categories">
+                    <div class='prompt'>
+                        <div class="loader"></div>
                     </div>
                 </div>
-                <div class="book category">
-                    <div class="book-info">
-                        <h1 class="section-title">Bestsellers</h1>
+            </section>
+            <section id="thriller" class="results">
+                <div class="flex">
+                    <h1 class="section-title">New releases</h1>
+                    <div>
+                        <button id="thriller-prev" class="pagination prev" onclick="prev('thriller')">⮜</button>
+                        <button id="thriller-next" class="pagination next" onclick="next('thriller')">⮞</button>
                     </div>
                 </div>
-            </div>
-            </div>
-        </section>
-        <section id="mystery" class="results">
-            <div class="flex">
-                <h1 class="section-title">Daily Top 100</h1>
-                <div>
-                    <button id="mystery-prev" class="pagination prev" onclick="prev('mystery')">⮜</button>
-                    <button id="mystery-next" class="pagination next" onclick="next('mystery')">⮞</button>
+                <div class="list-book thriller categories">
+                    <div class='prompt'>
+                        <div class="loader"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="list-book mystery categories">
-                <div class='prompt'>
-                    <div class="loader"></div>
+            </section>
+            <section id="historical" class="results">
+                <div class="flex">
+                    <h1 class="section-title">Bestsellers</h1>
+                    <div>
+                        <button id="historical-prev" class="pagination prev" onclick="prev('historical')">⮜</button>
+                        <button id="historical-next" class="pagination next" onclick="next('historical')">⮞</button>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section id="thriller" class="results">
-            <div class="flex">
-                <h1 class="section-title">New releases</h1>
-                <div>
-                    <button id="thriller-prev" class="pagination prev" onclick="prev('thriller')">⮜</button>
-                    <button id="thriller-next" class="pagination next" onclick="next('thriller')">⮞</button>
+                <div class="list-book historical categories">
+                    <div class='prompt'>
+                        <div class="loader"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="list-book thriller categories">
-                <div class='prompt'>
-                    <div class="loader"></div>
-                </div>
-            </div>
-        </section>
-        <section id="historical" class="results">
-            <div class="flex">
-                <h1 class="section-title">Bestsellers</h1>
-                <div>
-                    <button id="historical-prev" class="pagination prev" onclick="prev('historical')">⮜</button>
-                    <button id="historical-next" class="pagination next" onclick="next('historical')">⮞</button>
-                </div>
-            </div>
-            <div class="list-book historical categories">
-                <div class='prompt'>
-                    <div class="loader"></div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
         <section id="fiction" class="results">
             <div class="flex">
                 <h1 class="section-title">Fiction</h1>
