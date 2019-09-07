@@ -4,7 +4,8 @@
 
 <div align="center">
   <br>
-  <img src="icons/screely.png" alt="binder" width="100%">
+  <img src="icons/screely.png" alt="markdown" width="100%">
+  <img src="icons/screely2.png" alt="markdown" width="100%">
   <br>
 </div>
 
