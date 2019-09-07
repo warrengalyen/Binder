@@ -11,9 +11,9 @@ const drawChartBook = async (subject) => {
     const cdata = await getBinder(`subject:${subject}&maxResults=6&orderBy=newest`)
     if (cdata.error) {
         cbookContainer.innerHTML = `<div class='prompt'><div class='prompt'>ツ</div>Limit exceeded! Try after some time</div>`
-    } else if (cdata.totalItems == 0) {
+    } else if (cdata.totalItems === 0) {
         cbookContainer.innerHTML = `<div class='prompt'><div class='prompt'>ツ</div>No results, try a different term!</div>`
-    } else if (cdata.totalItems == undefined) {
+    } else if (cdata.totalItems === undefined) {
         cbookContainer.innerHTML = `<div class='prompt'><div class='prompt'>ツ</div>Network problem!</div>`
     } else {
         cbookContainer.innerHTML = cdata.items
@@ -24,14 +24,14 @@ const drawChartBook = async (subject) => {
     }
 }
 const drawListBook = async () => {
-    if (searchBinder.value != '') {
+    if (searchBinder.value !== '') {
         bookContainer.innerHTML = `<div class='prompt'><div class="loader"></div><div>Searching...</div></div>`
         const data = await getBinder(searchBinder.value)
         if (data.error) {
             bookContainer.innerHTML = `<div class='prompt'><div class='prompt'>ツ</div>Limit exceeded! Try after some time</div>`
-        } else if (data.totalItems == 0) {
+        } else if (data.totalItems === 0) {
             bookContainer.innerHTML = `<div class='prompt'><div class='prompt'>ツ</div>No results, try a different term!</div>`
-        } else if (data.totalItems == undefined) {
+        } else if (data.totalItems === undefined) {
             bookContainer.innerHTML = `<div class='prompt'><div class='prompt'>ツ</div>Network problem!</div>`
         } else {
             bookContainer.innerHTML = data.items
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 let mainNavLinks = document.querySelectorAll('.nav')
 window.addEventListener('scroll', event => {
-    let fromTop = window.scrollY + 128
+    let fromTop = window.scrollY + 200
     mainNavLinks.forEach(({
                               hash,
                               classList
@@ -98,3 +98,14 @@ const getRandomColor = () => {
     color += '1A'
     return color
 }
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]')
+const switchTheme = ({
+                         target
+                     }) => {
+    if (target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark')
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light')
+    }
+}
+toggleSwitch.addEventListener('change', switchTheme, false)
