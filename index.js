@@ -72,6 +72,7 @@ searchBooks.addEventListener('input', () => {
 document.addEventListener('DOMContentLoaded', () => {
     drawChartBook('mystery')
     drawChartBook('thriller')
+    drawChartBook('authors')
     drawChartBook('historical')
     drawChartBook('fiction')
     drawChartBook('poetry')
