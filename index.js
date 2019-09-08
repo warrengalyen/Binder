@@ -1,6 +1,6 @@
 let bookContainer = document.querySelector('.search')
-let searchBinder = document.getElementById('search-box')
-const getBinder = async book => {
+let searchBooks = document.getElementById('search-box')
+const getBooks = async book => {
     const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${book}`)
     const data = await response.json()
     return data
@@ -8,7 +8,7 @@ const getBinder = async book => {
 const drawChartBook = async (subject, startIndex = 0) => {
     let cbookContainer = document.querySelector(`.${subject}`)
     cbookContainer.innerHTML = `<div class='prompt'><div class="loader"></div></div>`
-    const cdata = await getBinder(`subject:${subject}&startIndex=${startIndex}&maxResults=6&orderBy=newest`)
+    const cdata = await getBooks(`subject:${subject}&startIndex=${startIndex}&maxResults=6&orderBy=newest`)
     if (cdata.error) {
         cbookContainer.innerHTML = `<div class='prompt'>ツ Limit exceeded! Try after some time</div>`
     } else if (cdata.totalItems === 0) {
@@ -24,10 +24,10 @@ const drawChartBook = async (subject, startIndex = 0) => {
     }
 }
 const drawListBook = async () => {
-    if (searchBinder.value !== '') {
+    if (searchBooks.value !== '') {
         bookContainer.style.display = 'flex'
         bookContainer.innerHTML = `<div class='prompt'><div class="loader"></div></div>`
-        const data = await getBinder(`${searchBinder.value}&maxResults=6`)
+        const data = await getBooks(`${searchBooks.value}&maxResults=6`)
         if (data.error) {
             bookContainer.innerHTML = `<div class='prompt'>ツ Limit exceeded! Try after some time</div>`
         } else if (data.totalItems === 0) {
@@ -60,13 +60,13 @@ const updateFilter = ({
             m = 'subject:'
             break
     }
-    searchBinder.value = m + innerHTML
+    searchBooks.value = m + innerHTML
     debounce(drawListBook, 1000)
 }
 const debounce = (fn, time, to = 0) => {
     to ? clearTimeout(to) : (to = setTimeout(drawListBook, time))
 }
-searchBinder.addEventListener('input', () => {
+searchBooks.addEventListener('input', () => {
     debounce(drawListBook, 1000)
 })
 document.addEventListener('DOMContentLoaded', () => {

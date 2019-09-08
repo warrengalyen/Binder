@@ -1,7 +1,7 @@
 {
   "name": "Binder",
   "short_name": "Binder",
-  "description": "Find books from Google Play Binder",
+  "description": "Find books from Google Play Books",
   "icons": [
     {
       "src": "icons/icon-48x48.png",

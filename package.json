@@ -4,7 +4,7 @@
         "type": "git",
         "url": "https://github.com/warrengalyen/binder.git"
     },
-    "description": "Find books from Google Play Binder",
+    "description": "Find books from Google Play Books",
     "author": "Warren Galyen",
     "version": "0.0.1",
     "devDependencies": {

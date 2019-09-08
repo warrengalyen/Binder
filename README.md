@@ -1,12 +1,12 @@
 <img src="icons/icon-48x48.png" alt="binder" width="32"> Binder
 
-### 📚 Find books from Google Play Binder by [Warren Galyen](https://github.com/warrengalyen)
+### 📚 Find books from Google Play Books by [Warren Galyen](https://github.com/warrengalyen)
 
 <div align="center">
   <br>
   <img src="icons/screely.png" alt="markdown" width="100%">
   <img src="icons/screely2.png" alt="markdown" width="100%">
-  <img src="icons/screely3.png" alt="marcdown" width="100%">
+  <img src="icons/screely3.png" alt="markdown" width="100%">
   <br>
 </div>
 
