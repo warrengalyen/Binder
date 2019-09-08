@@ -11,34 +11,34 @@ const drawChartBook = async (subject, startIndex = 0) => {
     const cdata = await getBooks(`subject:${subject}&startIndex=${startIndex}&maxResults=6&orderBy=newest`)
     if (cdata.error) {
         cbookContainer.innerHTML = `<div class='prompt'>ツ Limit exceeded! Try after some time</div>`
-    } else if (cdata.totalItems === 0) {
+    } else if (cdata.totalItems == 0) {
         cbookContainer.innerHTML = `<div class='prompt'>ツ No results, try a different term!</div>`
-    } else if (cdata.totalItems === undefined) {
+    } else if (cdata.totalItems == undefined) {
         cbookContainer.innerHTML = `<div class='prompt'>ツ Network problem!</div>`
     } else {
         cbookContainer.innerHTML = cdata.items
             .map(({
                       volumeInfo
-                  }) => `<div class='book' style='background: linear-gradient(` + getRandomColor() + `, rgba(0, 0, 0, 0));'><img class='thumbnail trigger' src='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' alt='cover' data-cover='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' data-isbn='${volumeInfo.title}' data-title='${volumeInfo.title}' data-authors='${volumeInfo.authors}'><div class='book-info'><h3 class='book-title trigger' data-cover='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' data-isbn='${volumeInfo.title}' data-title='${volumeInfo.title}' data-authors='${volumeInfo.authors}'>${volumeInfo.title}</h3><div class='book-authors' onclick='updateFilter(this,"author");'>${volumeInfo.authors}</div><div class='info' onclick='updateFilter(this,"subject");' style='background-color: ` + getRandomColor() + `;'>` + (volumeInfo.categories === undefined ? 'Others' : volumeInfo.categories) + `</div></div></div>`)
+                  }) => `<div class='book' style='background: linear-gradient(` + getRandomColor() + `, rgba(0, 0, 0, 0));'><img class='thumbnail trigger' src='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' alt='cover' data-cover='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' data-isbn='${volumeInfo.industryIdentifiers[0].identifier}' data-title='${volumeInfo.title}' data-authors='${volumeInfo.authors}'><div class='book-info'><h3 class='book-title trigger' data-cover='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' data-isbn='${volumeInfo.industryIdentifiers[0].identifier}' data-title='${volumeInfo.title}' data-authors='${volumeInfo.authors}'>${volumeInfo.title}</h3><div class='book-authors' onclick='updateFilter(this,"author");'>${volumeInfo.authors}</div><div class='info' onclick='updateFilter(this,"subject");' style='background-color: ` + getRandomColor() + `;'>` + (volumeInfo.categories === undefined ? 'Others' : volumeInfo.categories) + `</div></div></div>`)
             .join('')
     }
 }
 const drawListBook = async () => {
-    if (searchBooks.value !== '') {
+    if (searchBooks.value != '') {
         bookContainer.style.display = 'flex'
         bookContainer.innerHTML = `<div class='prompt'><div class="loader"></div></div>`
         const data = await getBooks(`${searchBooks.value}&maxResults=6`)
         if (data.error) {
             bookContainer.innerHTML = `<div class='prompt'>ツ Limit exceeded! Try after some time</div>`
-        } else if (data.totalItems === 0) {
+        } else if (data.totalItems == 0) {
             bookContainer.innerHTML = `<div class='prompt'>ツ No results, try a different term!</div>`
-        } else if (data.totalItems === undefined) {
+        } else if (data.totalItems == undefined) {
             bookContainer.innerHTML = `<div class='prompt'>ツ Network problem!</div>`
         } else {
             bookContainer.innerHTML = data.items
                 .map(({
                           volumeInfo
-                      }) => `<div class='book' style='background: linear-gradient(` + getRandomColor() + `, rgba(0, 0, 0, 0));'><img class='thumbnail trigger' src='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' alt='cover' data-cover='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' data-isbn='${volumeInfo.title}' data-title='${volumeInfo.title}' data-authors='${volumeInfo.authors}'><div class='book-info'><h3 class='book-title trigger' data-cover='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' data-isbn='${volumeInfo.title}' data-title='${volumeInfo.title}' data-authors='${volumeInfo.authors}'>${volumeInfo.title}</h3><div class='book-authors' onclick='updateFilter(this,"author");'>${volumeInfo.authors}</div><div class='info' onclick='updateFilter(this,"subject");' style='background-color: ` + getRandomColor() + `;'>` + (volumeInfo.categories === undefined ? 'Others' : volumeInfo.categories) + `</div></div></div>`)
+                      }) => `<div class='book' style='background: linear-gradient(` + getRandomColor() + `, rgba(0, 0, 0, 0));'><img class='thumbnail trigger' src='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' alt='cover' data-cover='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' data-isbn='${volumeInfo.industryIdentifiers[0].identifier}' data-title='${volumeInfo.title}' data-authors='${volumeInfo.authors}'><div class='book-info'><h3 class='book-title trigger' data-cover='` + (volumeInfo.imageLinks.thumbnail === undefined ? 'icons/logo.svg' : volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')) + `' data-isbn='${volumeInfo.industryIdentifiers[0].identifier}' data-title='${volumeInfo.title}' data-authors='${volumeInfo.authors}'>${volumeInfo.title}</h3><div class='book-authors' onclick='updateFilter(this,"author");'>${volumeInfo.authors}</div><div class='info' onclick='updateFilter(this,"subject");' style='background-color: ` + getRandomColor() + `;'>` + (volumeInfo.categories === undefined ? 'Others' : volumeInfo.categories) + `</div></div></div>`)
                 .join('')
         }
     } else {
@@ -135,23 +135,24 @@ const prev = (subject) => {
         drawChartBook(subject, startIndex)
     }
 }
-const modal = document.querySelector(".modal");
-const closeButton = document.querySelector(".close-button");
+const modal = document.querySelector('.modal')
+const closeButton = document.querySelector('.close-button')
 const toggleModal = () => {
-    modal.classList.toggle("show-modal");
+    modal.classList.toggle('show-modal')
 }
 const windowOnClick = ({
                            target
                        }) => {
     if (target === modal) {
-        toggleModal();
+        toggleModal()
     }
 }
 const hasClass = ({
                       classList
-                  }, className) => {
-    return classList.contains(className);
-}
+                  },
+                  className
+) => classList.contains(className)
+
 document.addEventListener('click', ({
                                         target
                                     }) => {
@@ -161,12 +162,21 @@ document.addEventListener('click', ({
         document.getElementById('preview-title').textContent = target.dataset.title
         document.getElementById('preview-authors').textContent = target.dataset.authors
     }
-}, false);
-closeButton.addEventListener("click", toggleModal);
-window.addEventListener("click", windowOnClick);
-google.books.load();
+}, false)
+closeButton.addEventListener('click', toggleModal)
+window.addEventListener('click', windowOnClick)
+google.books.load('books', '0')
 const initialize = () => {
-    var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
-    viewer.load('ISBN:0738531367');
+    const display_options = {
+        showLinkChrome: false
+    }
+    const viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'), display_options)
+    viewer.load('ISBN:0738531367', bookNotFound, removePreviewFooter)
 }
-google.books.setOnLoadCallback(initialize);
+const bookNotFound = () => {
+    document.getElementById('viewerCanvas').innerHTML = '<h3>Oops! Preview not found for this book!</h3>'
+}
+const removePreviewFooter = () => {
+    document.querySelector('#viewerCanvas > div > div:nth-child(2)').style.display = 'none'
+}
+google.books.setOnLoadCallback(initialize)
