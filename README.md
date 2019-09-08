@@ -6,7 +6,6 @@
   <br>
   <img src="icons/screely.png" alt="markdown" width="100%">
   <img src="icons/screely2.png" alt="markdown" width="100%">
-  <img src="icons/screely3.png" alt="markdown" width="100%">
   <br>
 </div>
 
