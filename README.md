@@ -13,13 +13,11 @@
 
 **Lightweight and minimal**: Crafted with minimalistic UI design
 
-**Real-time demo**: Search books by name, author, genre etc...
+**Real-time search**: Search books by name, author, genre etc...
 
-**Copy color codes to the clipboard**: Click on any book to read it in Google Play Books!
+**Instant reading**: Click on any book to read it in Google Play Books!
 
-**Choose custom colors**: Instant search results
-
- **Turn off the lights!**: Dark mode to soothe your eyes
+**Turn off the lights!**: Dark mode to soothe your eyes
 
 ---
 
