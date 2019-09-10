@@ -178,7 +178,7 @@ aside {
 }
 
 .theme-switch::before {
-    padding-left: 48px content: '🌗';
+    padding-left: 48px; content: '🌗';
     cursor: pointer;
 }
 
