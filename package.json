@@ -8,7 +8,7 @@
     "author": "Warren Galyen",
     "version": "0.0.1",
     "devDependencies": {
-        "jshint": "^2.10.2"
+        "jshint": "^2.13.6"
     },
     "scripts": {
         "test": "jshint travis.js"
